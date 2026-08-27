@@ -45,7 +45,7 @@ app.use(cookieParser());
 // Parse allowed origins from env (supports single origin or comma-separated list)
 app.use(
   cors({
-    origin: process.env.CLIENT_URL?.split(',') || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL,
     credentials: true
   })
 );

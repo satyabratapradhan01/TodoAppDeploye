@@ -1,0 +1,40 @@
+name: Deploy Backend to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**' # adjust if your backend folder is 'backend' or at root
+      - '.github/workflows/backend-deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create ZIP Deployment Package
+        run: |
+          cd server
+          zip -r ../deploy-${{ github.sha }}.zip . -x "*.git*" "node_modules/*"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ secrets.AWS_REGION }}
+          application_name: ${{ secrets.EB_APP_NAME }}
+          environment_name: ${{ secrets.EB_ENV_NAME }}
+          version_label: "taskflow-deploy-${{ github.sha }}"
+          deployment_package: deploy-${{ github.sha }}.zip
