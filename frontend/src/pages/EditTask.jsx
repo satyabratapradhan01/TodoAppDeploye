@@ -59,7 +59,7 @@ function EditTask() {
       await taskService.updateTask(id, taskData);
 
       // On success, redirect to the dashboard
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to update task');
     } finally {
@@ -82,7 +82,7 @@ function EditTask() {
   return (
     <div className="container">
       <div className="form-page">
-        <Link to="/" className="back-link">
+        <Link to="/dashboard" className="back-link">
           ← Back to Dashboard
         </Link>
 

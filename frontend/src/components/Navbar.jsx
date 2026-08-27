@@ -35,15 +35,22 @@ function Navbar() {
           TaskFlow
         </Link>
 
-        {/* Navigation links - change based on auth state */}
+        {/* Navigation links */}
         <div className="navbar-links">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+
           {user ? (
-            // ---- LOGGED IN: show user info and logout ----
+            // ---- LOGGED IN: show dashboard, user info and logout ----
             <>
-              <span className="navbar-user">Hello, {user.name}</span>
-              <Link to="/" className="nav-link">
+              <Link to="/dashboard" className="nav-link nav-link-highlight">
                 Dashboard
               </Link>
+              <span className="navbar-user">Hello, {user.name}</span>
               <button onClick={handleLogout} className="btn btn-outline btn-sm">
                 Logout
               </button>

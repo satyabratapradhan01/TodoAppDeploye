@@ -13,7 +13,7 @@ function NotFound() {
       <h2>Page Not Found</h2>
       <p>The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
       <Link to="/" className="btn btn-primary">
-        Go to Dashboard
+        Return Home
       </Link>
     </div>
   );

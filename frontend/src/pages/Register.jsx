@@ -56,7 +56,7 @@ function Register() {
       await register({ name, email, password });
 
       // On success, redirect to dashboard
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError(
         err.response?.data?.message || 'Registration failed. Please try again.'

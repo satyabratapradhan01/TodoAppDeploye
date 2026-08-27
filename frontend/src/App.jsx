@@ -17,6 +17,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
+import About from './pages/About';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -34,14 +36,15 @@ function App() {
       <main className="main-content">
         <Routes>
           {/* ---- PUBLIC ROUTES ---- */}
-          {/* Anyone can access these pages */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
           {/* ---- PROTECTED ROUTES ---- */}
           {/* Only authenticated users can access these pages */}
           <Route
-            path="/"
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
@@ -66,7 +69,6 @@ function App() {
           />
 
           {/* ---- CATCH-ALL ROUTE ---- */}
-          {/* If no route above matches, show the 404 page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

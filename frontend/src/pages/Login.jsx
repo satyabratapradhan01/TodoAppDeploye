@@ -42,7 +42,7 @@ function Login() {
       await login({ email, password });
 
       // On success, redirect to the dashboard
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       // On failure, show the error message
       // err.response?.data?.message gets the error from the API response

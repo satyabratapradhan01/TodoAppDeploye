@@ -31,7 +31,7 @@ function CreateTask() {
       await taskService.createTask(taskData);
 
       // On success, redirect to the dashboard
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create task');
     } finally {
@@ -43,7 +43,7 @@ function CreateTask() {
     <div className="container">
       <div className="form-page">
         {/* Back link to dashboard */}
-        <Link to="/" className="back-link">
+        <Link to="/dashboard" className="back-link">
           ← Back to Dashboard
         </Link>
 
