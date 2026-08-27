@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'server/**' # adjust if your backend folder is 'backend' or at root
+      - 'backend/**'
       - '.github/workflows/backend-deploy.yml'
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Create ZIP Deployment Package
         run: |
-          cd server
+          cd backend
           zip -r ../deploy-${{ github.sha }}.zip . -x "*.git*" "node_modules/*"
 
       - name: Configure AWS Credentials
